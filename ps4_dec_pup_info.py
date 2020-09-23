@@ -100,7 +100,7 @@ class Blob():
         self.BLOCKED      = 'True' if self.FLAGS & 0x800 == 0x800 else 'False'
         
         print('')
-        print('0x%02X - %s'                  % (entry, self.TYPE))
+        print('0x%02X - %s'                  % (entry, self.type(self.ID)))
         print('  Flags:                0x%X' % self.FLAGS)
         print('    Id:         0x%X'         % self.ID)
         print('    Compressed: %s'           % self.COMPRESSED)
