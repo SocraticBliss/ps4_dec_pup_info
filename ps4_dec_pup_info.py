@@ -86,10 +86,10 @@ class Blob():
     
     def __init__(self, f):
         
-        self.FLAGS          = struct.unpack('<Q', f.read(8))[0]
-        self.OFFSET         = struct.unpack('<Q', f.read(8))[0]
-        self.FILE_SIZE      = struct.unpack('<Q', f.read(8))[0]
-        self.MEMORY_SIZE    = struct.unpack('<Q', f.read(8))[0]
+        self.FLAGS        = struct.unpack('<Q', f.read(8))[0]
+        self.OFFSET       = struct.unpack('<Q', f.read(8))[0]
+        self.FILE_SIZE    = struct.unpack('<Q', f.read(8))[0]
+        self.MEMORY_SIZE  = struct.unpack('<Q', f.read(8))[0]
     
     def __str__(self, entry):
         
@@ -101,7 +101,7 @@ class Blob():
         print('')
         print('0x%02X - %s'                  % (entry, type))
         print('  Flags:                0x%X' % self.FLAGS)
-        print('    Id:         0x%X'    % id)
+        print('    Id:         0x%X'         % id)
         print('    Compressed: %s'           % ('True' if compressed else 'False'))
         print('    Blocked:    %s'           % ('True' if blocked else 'False'))
         print('  File Offset:          0x%X' % self.OFFSET)
