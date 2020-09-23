@@ -82,7 +82,8 @@ class Pup():
     
 
 class Blob():
-    __slots__ = ('FLAGS', 'OFFSET', 'FILE_SIZE', 'MEMORY_SIZE')
+    __slots__ = ('FLAGS', 'OFFSET', 'FILE_SIZE', 'MEMORY_SIZE', 
+                 'ID', 'TYPE', 'COMPRESSED', 'BLOCKED')
     
     def __init__(self, f):
         
@@ -93,17 +94,17 @@ class Blob():
     
     def __str__(self, entry):
         
-        id         = self.FLAGS >> 20
-        type       = self.type(id)
-        compressed = 1 if self.FLAGS & 0x8 == 0x8 else 0
-        blocked    = 1 if self.FLAGS & 0x800 == 0x800 else 0
+        self.ID           = self.FLAGS >> 20
+        self.TYPE         = self.type(id)
+        self.COMPRESSED   = 'True' if self.FLAGS & 0x8 == 0x8 else 'False'
+        self.BLOCKED      = 'True' if self.FLAGS & 0x800 == 0x800 else 'False'
         
         print('')
-        print('0x%02X - %s'                  % (entry, type))
+        print('0x%02X - %s'                  % (entry, self.TYPE))
         print('  Flags:                0x%X' % self.FLAGS)
-        print('    Id:         0x%X'         % id)
-        print('    Compressed: %s'           % ('True' if compressed else 'False'))
-        print('    Blocked:    %s'           % ('True' if blocked else 'False'))
+        print('    Id:         0x%X'         % self.ID)
+        print('    Compressed: %s'           % self.COMPRESSED)
+        print('    Blocked:    %s'           % self.BLOCKED)
         print('  File Offset:          0x%X' % self.OFFSET)
         print('  File Size:            0x%X' % self.FILE_SIZE)
         print('  Memory Size:          0x%X' % self.MEMORY_SIZE)
